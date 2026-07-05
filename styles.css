@@ -208,7 +208,7 @@ p {
   background: radial-gradient(circle at 25% 20%, #f8d97a 0%, #d0973e 24%, #8e4d2b 58%, #4e2518 100%);
   box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.2), inset 0 -12px 0 rgba(0, 0, 0, 0.2), 0 24px 36px rgba(0, 0, 0, 0.28);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .muffin-button::before {
@@ -242,6 +242,48 @@ p {
   transform: scale(0.98);
 }
 
+.muffin-orbit {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.orbit-sprite {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 1.1rem;
+  color: #3b220f;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: linear-gradient(135deg, #fff4c2, #ffb36b);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: translate(-50%, -50%) rotate(0deg) translateX(var(--radius)) rotate(0deg);
+  animation: orbit-spin 7.5s linear infinite;
+  animation-delay: var(--delay);
+}
+
+.orbit-sprite .orbit-count {
+  position: absolute;
+  right: -4px;
+  bottom: -4px;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: #3b220f;
+  color: #fff7eb;
+  font-size: 0.68rem;
+  display: grid;
+  place-items: center;
+  padding: 0 0.22rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
 .muffin-shadow {
   position: absolute;
   bottom: 24px;
@@ -250,10 +292,12 @@ p {
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.25);
   filter: blur(5px);
+  z-index: 1;
 }
 
 .muffin-cupcake {
   position: relative;
+  z-index: 3;
   width: 205px;
   height: 180px;
   display: grid;
@@ -618,6 +662,15 @@ p {
   }
   50% {
     transform: translateY(-4px);
+  }
+}
+
+@keyframes orbit-spin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg) translateX(var(--radius)) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg) translateX(var(--radius)) rotate(-360deg);
   }
 }
 

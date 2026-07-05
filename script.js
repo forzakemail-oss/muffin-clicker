@@ -48,6 +48,7 @@ const vibeTextEl = document.getElementById("vibe-text");
 const comboFillEl = document.getElementById("combo-fill");
 const comboValueEl = document.getElementById("combo-value");
 const statusMessageEl = document.getElementById("status-message");
+const muffinOrbitEl = document.getElementById("muffin-orbit");
 const buildingListEl = document.getElementById("building-list");
 const upgradeListEl = document.getElementById("upgrade-list");
 const achievementListEl = document.getElementById("achievement-list");
@@ -221,10 +222,40 @@ function updateUI() {
   prestigeButtonEl.disabled = state.totalMuffins < getPrestigeCost();
   prestigeButtonEl.textContent = `Rebirth for ${formatNumber(getPrestigeCost())} total`;
   autoBuyToggleEl.textContent = state.autoBuyEnabled ? "⚙️ Auto-buy: On" : "⚙️ Auto-buy: Off";
+  renderOrbitSprites();
   renderBuildings();
   renderUpgrades();
   renderAchievements();
   renderMilestones();
+}
+
+function renderOrbitSprites() {
+  muffinOrbitEl.innerHTML = "";
+  const orbitItems = [];
+
+  buildingDefinitions.forEach((definition) => {
+    const owned = state.buildings[definition.id] || 0;
+    if (owned > 0) {
+      orbitItems.push({ icon: definition.icon, name: definition.name, count: owned });
+    }
+  });
+
+  upgradeDefinitions.forEach((definition) => {
+    const owned = state.upgrades[definition.id] || 0;
+    if (owned > 0 && orbitItems.length < 8) {
+      orbitItems.push({ icon: definition.icon, name: definition.name, count: owned });
+    }
+  });
+
+  orbitItems.forEach((item, index) => {
+    const sprite = document.createElement("div");
+    sprite.className = "orbit-sprite";
+    sprite.title = `${item.name} ×${item.count}`;
+    sprite.innerHTML = `<span>${item.icon}</span><span class="orbit-count">${item.count > 1 ? item.count : ""}</span>`;
+    sprite.style.setProperty("--radius", `${86 + (index % 3) * 14}px`);
+    sprite.style.setProperty("--delay", `${index * 0.35}s`);
+    muffinOrbitEl.appendChild(sprite);
+  });
 }
 
 function renderBuildings() {
