@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Moon Crumb Clicker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="aurora"></div>
+    <main class="game-shell">
+      <header class="hero-card">
+        <div>
+          <p class="eyebrow">ghostly bakery idle</p>
+          <h1>Moon Crumb Clicker</h1>
+          <p class="tagline">
+            Tap a cursed little muffin into a bakery that hums with sleepy magic and strange little miracles.
+          </p>
+        </div>
+        <div class="hero-actions">
+          <button id="music-toggle" class="music-toggle" type="button">🎶 Music: On</button>
+          <button id="sound-toggle" class="music-toggle" type="button">🔊 SFX: On</button>
+          <button id="auto-buy-toggle" class="music-toggle" type="button">⚙️ Auto-buy: Off</button>
+          <div class="hero-badge">💾 Auto-save enabled</div>
+        </div>
+      </header>
+      <p id="music-lyrics" class="music-lyrics">“Muffin rise, moonlight shine, let the sweet bass roll.”</p>
+
+      <section class="status-card">
+        <div class="score-block">
+          <p class="label">Muffins baked</p>
+          <h2 id="muffin-count">0</h2>
+        </div>
+        <div class="stats-grid">
+          <div>
+            <p class="label">Per second</p>
+            <strong id="per-second">0</strong>
+          </div>
+          <div>
+            <p class="label">Click power</p>
+            <strong id="click-power">1</strong>
+          </div>
+          <div>
+            <p class="label">Bakery mood</p>
+            <strong id="vibe-text">Cool and curious</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="play-area">
+        <div class="muffin-panel">
+          <button id="muffin-button" class="muffin-button" aria-label="Bake a muffin">
+            <span class="muffin-shadow"></span>
+            <span class="muffin-cupcake">
+              <span class="muffin-top"></span>
+              <span class="muffin-base"></span>
+              <span class="muffin-face">
+                <span class="eye left"></span>
+                <span class="eye right"></span>
+                <span class="mouth"></span>
+              </span>
+            </span>
+            <span class="button-copy">Bake a muffin</span>
+          </button>
+          <div class="meter-card">
+            <div class="meter-labels">
+              <span>Frosting combo</span>
+              <span id="combo-value">0%</span>
+            </div>
+            <div class="meter-bar">
+              <div id="combo-fill"></div>
+            </div>
+            <p id="status-message">
+              Every few taps fills the frosting meter and summons a short, sweet, spooky rush.
+            </p>
+          </div>
+        </div>
+
+        <aside class="info-panel">
+          <h3>Bakery notes</h3>
+          <ul>
+            <li>Each click feels a little more unsettling and lovely.</li>
+            <li>Buildings and upgrades turn your little oven into a tiny nightmare of pastry joy.</li>
+            <li>Achievements bloom as your kitchen becomes a legend of sugar and moonlight.</li>
+          </ul>
+          <div class="achievement-card">
+            <h4>Odd little trophies</h4>
+            <ul id="achievement-list"></ul>
+          </div>
+        </aside>
+      </section>
+
+      <section class="shop-card">
+        <div class="shop-column">
+          <div class="shop-header">
+            <p class="eyebrow">tiny bakers & ovens</p>
+            <h3>Buildings</h3>
+            <p class="shop-subtitle">Each purchase adds steady muffins per second.</p>
+          </div>
+          <div id="building-list" class="upgrade-list"></div>
+        </div>
+
+        <div class="shop-column">
+          <div class="shop-header">
+            <p class="eyebrow">strange upgrades</p>
+            <h3>Upgrades</h3>
+            <p class="shop-subtitle">Boost clicks, boost income, and make the bakery feel alive.</p>
+          </div>
+          <div id="upgrade-list" class="upgrade-list"></div>
+        </div>
+      </section>
+
+      <section class="panel-card">
+        <div class="panel-column">
+          <h3>Bakery stats</h3>
+          <ul class="stats-list">
+            <li>Total clicks: <strong id="total-clicks">0</strong></li>
+            <li>Total baked: <strong id="total-baked">0</strong></li>
+            <li>Buildings owned: <strong id="building-count">0</strong></li>
+            <li>Upgrade streak: <strong id="upgrade-count">0</strong></li>
+          </ul>
+          <h3 class="mini-heading">Milestones</h3>
+          <div id="milestone-list" class="milestone-list"></div>
+        </div>
+        <div class="panel-column">
+          <h3>Cookie-style controls</h3>
+          <p class="panel-copy">Buy buildings, stack upgrades, and watch your little cursed bakery snowball into a full moonlit empire.</p>
+          <button id="buy-all-button" class="buy-all-button" type="button">Buy the best affordable thing</button>
+          <button id="prestige-button" class="buy-all-button secondary" type="button">Rebirth for 0 stardust</button>
+          <ul class="stats-list">
+            <li>Stardust: <strong id="stardust-count">0</strong></li>
+            <li>Rebirths: <strong id="prestige-count">0</strong></li>
+            <li>Best CPS: <strong id="best-cps">0</strong></li>
+            <li>Best click power: <strong id="best-click-power">1</strong></li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <div id="notification-area" class="notification-area" aria-live="polite"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
