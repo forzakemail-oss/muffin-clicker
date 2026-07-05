@@ -1,13 +1,13 @@
 :root {
   color-scheme: dark;
-  --bg: #140b22;
-  --card: rgba(255, 255, 255, 0.08);
-  --card-strong: rgba(255, 255, 255, 0.12);
+  --bg: #1b0f0d;
+  --card: rgba(255, 240, 214, 0.1);
+  --card-strong: rgba(255, 240, 214, 0.14);
   --text: #fff7eb;
-  --muted: #d8c5ff;
-  --accent: #ff7da8;
-  --accent-2: #ffe08c;
-  --accent-3: #7ee0ff;
+  --muted: #f3d7a9;
+  --accent: #d98a2b;
+  --accent-2: #ffd66b;
+  --accent-3: #7d4a2b;
   --border: rgba(255, 255, 255, 0.16);
 }
 
@@ -21,9 +21,9 @@ body {
   font-family: "Comfortaa", cursive;
   color: var(--text);
   background:
-    radial-gradient(circle at top left, rgba(255, 125, 168, 0.25), transparent 24%),
-    radial-gradient(circle at bottom right, rgba(126, 224, 255, 0.2), transparent 36%),
-    linear-gradient(140deg, #0f0718 0%, #1a1130 60%, #140b22 100%);
+    radial-gradient(circle at top left, rgba(217, 138, 43, 0.28), transparent 24%),
+    radial-gradient(circle at bottom right, rgba(125, 74, 43, 0.24), transparent 36%),
+    linear-gradient(140deg, #100708 0%, #281311 60%, #140b22 100%);
   overflow-x: hidden;
 }
 
@@ -48,7 +48,7 @@ body::before {
 .game-shell {
   width: min(1180px, calc(100% - 2rem));
   margin: 0 auto;
-  padding: 2rem 0 3rem;
+  padding: 1rem 0 3rem;
 }
 
 .hero-card,
@@ -57,8 +57,8 @@ body::before {
 .shop-card {
   background: var(--card);
   border: 1px solid var(--border);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.24);
-  backdrop-filter: blur(18px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(14px);
 }
 
 .hero-card {
@@ -69,6 +69,7 @@ body::before {
   padding: 1.4rem 1.6rem;
   border-radius: 24px;
   margin-bottom: 1rem;
+  flex-wrap: wrap;
 }
 
 h1,
@@ -98,12 +99,14 @@ p {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .music-toggle {
   border: none;
   cursor: pointer;
-  background: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 240, 214, 0.14);
   color: var(--text);
   padding: 0.72rem 0.95rem;
   border-radius: 999px;
@@ -118,6 +121,12 @@ p {
   transform: translateY(-1px);
 }
 
+.cheat-button {
+  background: linear-gradient(135deg, rgba(217, 138, 43, 0.28), rgba(255, 224, 140, 0.16));
+  border: 1px solid rgba(217, 138, 43, 0.45);
+  color: #fff4da;
+}
+
 .music-lyrics {
   margin: -0.4rem 0 1rem;
   color: #ffdca8;
@@ -127,7 +136,7 @@ p {
 
 .hero-badge {
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  color: #3d2144;
+  color: #49240e;
   padding: 0.72rem 1rem;
   border-radius: 999px;
   font-weight: 700;
@@ -141,6 +150,7 @@ p {
   padding: 1.2rem 1.4rem;
   border-radius: 24px;
   margin-bottom: 1rem;
+  flex-wrap: wrap;
 }
 
 .score-block h2 {
@@ -187,14 +197,16 @@ p {
   position: relative;
   border: 2px solid rgba(255, 255, 255, 0.16);
   cursor: pointer;
-  width: min(100%, 390px);
-  min-height: 270px;
-  border-radius: 36px;
+  width: min(100%, 360px);
+  max-width: 100%;
+  aspect-ratio: 1;
+  min-height: 320px;
+  border-radius: 50%;
   padding: 1rem;
   display: grid;
   place-items: center;
-  background: linear-gradient(150deg, #4a2155 0%, #23132f 70%, #130918 100%);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 26px 38px rgba(0, 0, 0, 0.28);
+  background: radial-gradient(circle at 25% 20%, #f8d97a 0%, #d0973e 24%, #8e4d2b 58%, #4e2518 100%);
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.2), inset 0 -12px 0 rgba(0, 0, 0, 0.2), 0 24px 36px rgba(0, 0, 0, 0.28);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
   overflow: hidden;
 }
@@ -211,11 +223,14 @@ p {
 .muffin-button::after {
   content: "";
   position: absolute;
-  width: 220px;
-  height: 220px;
-  background: radial-gradient(circle, rgba(255, 224, 140, 0.22), transparent 70%);
-  animation: pulseGlow 2.6s ease-in-out infinite;
+  inset: 20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent 55%);
   pointer-events: none;
+}
+
+.muffin-button:hover::after {
+  animation: pulseGlow 2.6s ease-in-out infinite;
 }
 
 .muffin-button:hover {
@@ -244,6 +259,7 @@ p {
   display: grid;
   place-items: center;
   animation: muffinBob 2.2s ease-in-out infinite;
+  filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.28));
 }
 
 .muffin-top,
@@ -304,9 +320,10 @@ p {
   position: relative;
   z-index: 2;
   margin-top: 1.3rem;
-  font-size: 1.1rem;
-  letter-spacing: 0.05em;
+  font-size: 1.12rem;
+  letter-spacing: 0.16em;
   font-weight: 700;
+  text-transform: uppercase;
   color: #fff8e0;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
 }
@@ -314,7 +331,7 @@ p {
 .meter-card,
 .info-panel,
 .achievement-card {
-  background: var(--card-strong);
+  background: rgba(255, 240, 214, 0.12);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 20px;
   padding: 1rem;
@@ -378,7 +395,7 @@ p {
 .shop-header {
   margin-bottom: 1rem;
 }
-
+ 
 .shop-subtitle {
   margin-top: 0.3rem;
   color: var(--muted);
@@ -477,7 +494,7 @@ p {
   border: none;
   cursor: pointer;
   background: linear-gradient(135deg, var(--accent-2), var(--accent));
-  color: #2f1738;
+  color: #3b220f;
   padding: 0.8rem 1rem;
   border-radius: 999px;
   font-weight: 700;
@@ -487,7 +504,7 @@ p {
 
 .buy-all-button:hover {
   transform: translateY(-1px);
-  box-shadow: 0 10px 24px rgba(255, 125, 168, 0.2);
+  box-shadow: 0 10px 24px rgba(217, 138, 43, 0.2);
 }
 
 .buy-all-button.secondary {
@@ -617,10 +634,27 @@ p {
 }
 
 @media (max-width: 620px) {
+  .game-shell {
+    width: min(100%, calc(100% - 1rem));
+    padding-top: 0.75rem;
+  }
+
   .hero-card,
   .status-card {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .hero-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .music-toggle,
+  .cheat-button,
+  .hero-badge {
+    width: 100%;
+    justify-content: center;
   }
 
   .stats-grid {
@@ -635,5 +669,11 @@ p {
   .upgrade-card {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .notification-area {
+    left: 0.75rem;
+    right: 0.75rem;
+    top: 0.75rem;
   }
 }

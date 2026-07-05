@@ -1,14 +1,16 @@
 const STORAGE_KEY = "moon-crumb-clicker-save";
 
 const buildingDefinitions = [
-  { id: "whisk", name: "Tiny Whisk", description: "A little helper gives you a tiny stream of muffins.", baseCost: 15, cps: 0.1, icon: "🥄" },
-  { id: "baker", name: "Sleepy Baker", description: "A moody baker keeps the tray coming in steady bursts.", baseCost: 100, cps: 1, icon: "🧑‍🍳" },
-  { id: "oven", name: "Pocket Oven", description: "A small oven chills in the corner and bakes nonstop.", baseCost: 550, cps: 8, icon: "🔥" },
-  { id: "mixer", name: "Moon Mixer", description: "A strange contraption folds magic into every batch.", baseCost: 1400, cps: 20, icon: "⚙️" },
-  { id: "bakery", name: "Haunted Bakery", description: "A full little bakery runs by itself at midnight.", baseCost: 8000, cps: 80, icon: "🏪" },
-  { id: "conveyor", name: "Midnight Conveyor", description: "A long ribbon of ovens keeps the trays rolling.", baseCost: 22000, cps: 220, icon: "🧱" },
-  { id: "kiln", name: "Moon Kiln", description: "A giant kiln of silver flame bakes in endless waves.", baseCost: 65000, cps: 650, icon: "🌙" },
-  { id: "starbakery", name: "Star Bakery", description: "A bakery in the sky, fueled by comet sugar and dreams.", baseCost: 180000, cps: 1800, icon: "✨" },
+  { id: "cursor", name: "Cursor", description: "A tiny hand that taps the muffin for you.", baseCost: 15, cps: 0.1, icon: "🖱️" },
+  { id: "grandma", name: "Grandma", description: "A grandmother in the shadows bakes while you nap.", baseCost: 100, cps: 1, icon: "🧓" },
+  { id: "oven", name: "Night Oven", description: "A tiny oven hums all night and keeps the trays rolling.", baseCost: 550, cps: 8, icon: "🔥" },
+  { id: "mixer", name: "Moon Mixer", description: "A strange machine folds magic into every batch.", baseCost: 1400, cps: 20, icon: "⚙️" },
+  { id: "bakery", name: "Haunted Bakery", description: "A whole bakery runs itself at midnight.", baseCost: 8000, cps: 80, icon: "🏪" },
+  { id: "conveyor", name: "Midnight Conveyor", description: "A line of ovens keeps the pastries coming in waves.", baseCost: 22000, cps: 220, icon: "🧱" },
+  { id: "kiln", name: "Moon Kiln", description: "A vast kiln of silver flame never stops glowing.", baseCost: 65000, cps: 650, icon: "🌙" },
+  { id: "starbakery", name: "Star Bakery", description: "A sky-high bakery fed by comet sugar and dreams.", baseCost: 180000, cps: 1800, icon: "✨" },
+  { id: "factory", name: "Moon Factory", description: "A gargantuan factory turns crumb traffic into endless trays.", baseCost: 400000, cps: 4000, icon: "🏭" },
+  { id: "temple", name: "Sugar Temple", description: "A sacred shrine that hums with blessings and buttery light.", baseCost: 1200000, cps: 12000, icon: "⛩️" },
 ];
 
 const upgradeDefinitions = [
@@ -20,16 +22,20 @@ const upgradeDefinitions = [
   { id: "cursedwhisk", name: "Cursed Whisk", description: "The whisk hums with a tiny haunted rhythm.", baseCost: 14000, clickPower: 3, cps: 15, icon: "🪄" },
   { id: "midnightglaze", name: "Midnight Glaze", description: "A glossy layer that turns every muffin into a jackpot.", baseCost: 40000, clickPower: 8, cps: 35, icon: "🕯️" },
   { id: "bakerychoir", name: "Bakery Choir", description: "The whole kitchen sings in perfect sugary harmony.", baseCost: 90000, clickPower: 12, cps: 80, icon: "🎵" },
+  { id: "sugarstorm", name: "Sugar Storm", description: "A gale of frosting makes every tap explode with extra power.", baseCost: 240000, clickPower: 18, cps: 120, icon: "🌪️" },
+  { id: "crescentoven", name: "Crescent Oven", description: "The moonlit oven feeds your whole operation with radiant heat.", baseCost: 600000, clickPower: 0, cps: 350, icon: "🌙" },
 ];
 
 const achievementDefinitions = [
-  { id: "first", name: "First Crumb", description: "Bake your first muffin.", check: (state) => state.totalMuffins >= 1 },
-  { id: "cozy", name: "Cozy Corner", description: "Reach 100 muffins.", check: (state) => state.totalMuffins >= 100 },
-  { id: "bliss", name: "Bakery Bliss", description: "Reach 10 muffins per second.", check: (state) => state.cps >= 10 },
-  { id: "legend", name: "Legendary Crumb", description: "Bake 10,000 muffins.", check: (state) => state.totalMuffins >= 10000 },
-  { id: "midnight", name: "Midnight Marathon", description: "Reach 1,000 total clicks.", check: (state) => state.clicks >= 1000 },
-  { id: "storm", name: "Sugar Storm", description: "Own 10 buildings.", check: (state) => getTotalOwnedBuildings(state) >= 10 },
-  { id: "empire", name: "Moonlit Empire", description: "Reach 100,000 total muffins.", check: (state) => state.totalMuffins >= 100000 },
+  { id: "first", icon: "🌙", name: "First Crumb", description: "Bake your first muffin.", check: (state) => state.totalMuffins >= 1 },
+  { id: "grandma", icon: "🧓", name: "Grandma's Hand", description: "Own your first grandma.", check: (state) => (state.buildings?.grandma || 0) >= 1 },
+  { id: "bliss", icon: "🔥", name: "Bakery Bliss", description: "Reach 10 muffins per second.", check: (state) => state.cps >= 10 },
+  { id: "storm", icon: "☄️", name: "Sugar Storm", description: "Own 10 buildings.", check: (state) => getTotalOwnedBuildings(state) >= 10 },
+  { id: "legend", icon: "✨", name: "Legendary Crumb", description: "Bake 10,000 muffins.", check: (state) => state.totalMuffins >= 10000 },
+  { id: "midnight", icon: "🫧", name: "Midnight Combo", description: "Trigger the frosting rush.", check: (state) => state.comboMeter >= 100 },
+  { id: "golden", icon: "🥇", name: "Golden Crumb", description: "Summon a golden muffin.", check: (state) => state.totalMuffins >= 50 },
+  { id: "empire", icon: "🌟", name: "Moonlit Empire", description: "Reach 100,000 total muffins.", check: (state) => state.totalMuffins >= 100000 },
+  { id: "rebirth", icon: "☄️", name: "Second Sunrise", description: "Rebirth once and begin again with a bonus.", check: (state) => (state.prestigeCount || 0) >= 1 },
 ];
 
 const state = loadState();
@@ -49,7 +55,9 @@ const totalClicksEl = document.getElementById("total-clicks");
 const totalBakedEl = document.getElementById("total-baked");
 const buildingCountEl = document.getElementById("building-count");
 const upgradeCountEl = document.getElementById("upgrade-count");
+const prestigeBonusEl = document.getElementById("prestige-bonus");
 const buyAllButtonEl = document.getElementById("buy-all-button");
+const cheatButtonEl = document.getElementById("cheat-button");
 const musicToggleEl = document.getElementById("music-toggle");
 const soundToggleEl = document.getElementById("sound-toggle");
 const autoBuyToggleEl = document.getElementById("auto-buy-toggle");
@@ -78,6 +86,7 @@ const lyricLines = [
 
 muffinButton.addEventListener("click", onMuffinClick);
 buyAllButtonEl.addEventListener("click", buyBestAffordable);
+cheatButtonEl.addEventListener("click", triggerCheatSequence);
 musicToggleEl.addEventListener("click", toggleMusic);
 soundToggleEl.addEventListener("click", toggleSound);
 autoBuyToggleEl.addEventListener("click", toggleAutoBuy);
@@ -96,6 +105,9 @@ function onMuffinClick() {
   state.muffins += gained;
   state.totalMuffins += gained;
   state.clicks += 1;
+  if (state.clicks === 1) {
+    statusMessageEl.textContent = "Your first muffin is baked. Buy a cursor and let the bakery start working for you.";
+  }
   state.comboMeter += 8;
   state.lastAction = Date.now();
   state.bestClickPower = Math.max(state.bestClickPower, state.clickPower * state.buffMultiplier);
@@ -182,11 +194,12 @@ function buyUpgrade(upgradeId) {
 }
 
 function getBuildingCost(definition, owned) {
-  return Math.floor(definition.baseCost * Math.pow(1.15, owned));
+  const scale = definition.id === "cursor" ? 1.08 : 1.15;
+  return Math.floor(definition.baseCost * Math.pow(scale, owned));
 }
 
 function getUpgradeCost(definition, owned) {
-  return Math.floor(definition.baseCost * Math.pow(1.2, owned));
+  return Math.floor(definition.baseCost * Math.pow(1.18, owned));
 }
 
 function updateUI() {
@@ -202,6 +215,7 @@ function updateUI() {
   upgradeCountEl.textContent = formatNumber(getTotalOwnedUpgrades());
   stardustCountEl.textContent = formatNumber(state.stardust || 0);
   prestigeCountEl.textContent = formatNumber(state.prestigeCount || 0);
+  prestigeBonusEl.textContent = `${(state.prestigeBonus || 1).toFixed(2)}x`;
   bestCpsEl.textContent = formatNumber(state.bestCps || 0);
   bestClickPowerEl.textContent = formatNumber(state.bestClickPower || 1);
   prestigeButtonEl.disabled = state.totalMuffins < getPrestigeCost();
@@ -258,7 +272,7 @@ function renderAchievements() {
   achievementDefinitions.forEach((achievement) => {
     const unlocked = Boolean(state.achievements?.[achievement.id]) || achievement.check(state);
     const item = document.createElement("li");
-    item.textContent = unlocked ? `✓ ${achievement.name} — ${achievement.description}` : `○ ${achievement.name}`;
+    item.innerHTML = unlocked ? `✓ ${achievement.icon || "🏅"} ${achievement.name} — ${achievement.description}` : `○ ${achievement.icon || "🏅"} ${achievement.name}`;
     if (unlocked) {
       item.style.color = "#ffe08c";
     }
@@ -322,6 +336,47 @@ function toggleSound() {
   soundToggleEl.textContent = soundEnabled ? "🔊 SFX: On" : "🔇 SFX: Off";
 }
 
+function triggerCheatSequence() {
+  const code = window.prompt("Enter the secret code:");
+  if (code && code.trim().toLowerCase() === "zakisthegoat") {
+    unlockEverything();
+    showNotification("Cheat activated", "Everything is unlocked.");
+  } else {
+    showNotification("Denied", "That code is not valid.");
+  }
+}
+
+function unlockEverything() {
+  state.muffins = 1000000000000;
+  state.totalMuffins = 1000000000000;
+  state.clicks += 1000;
+  state.clickPower = 1000;
+  state.cps = 1000000;
+  state.buildings = {};
+  buildingDefinitions.forEach((definition) => {
+    state.buildings[definition.id] = 100;
+  });
+  state.upgrades = {};
+  upgradeDefinitions.forEach((definition) => {
+    state.upgrades[definition.id] = 20;
+  });
+  state.achievements = {};
+  achievementDefinitions.forEach((achievement) => {
+    state.achievements[achievement.id] = true;
+  });
+  state.stardust = 999;
+  state.prestigeCount = 25;
+  state.bestCps = 1000000;
+  state.bestClickPower = 1000;
+  state.autoBuyEnabled = true;
+  state.comboMeter = 100;
+  state.buffMultiplier = 2;
+  state.buffTimer = 999;
+  state.eventCooldown = 0;
+  state.lastAction = Date.now();
+  updateUI();
+}
+
 function toggleAutoBuy() {
   state.autoBuyEnabled = !state.autoBuyEnabled;
   autoBuyToggleEl.textContent = state.autoBuyEnabled ? "⚙️ Auto-buy: On" : "⚙️ Auto-buy: Off";
@@ -334,10 +389,12 @@ function prestige() {
   const cost = getPrestigeCost();
   if (state.totalMuffins < cost) return;
   const dustGain = Math.max(1, Math.floor(state.totalMuffins / 25000) + (state.prestigeCount || 0) + 1);
+  const nextBonus = (state.prestigeBonus || 1) + 0.15;
   state.stardust = (state.stardust || 0) + dustGain;
   state.prestigeCount = (state.prestigeCount || 0) + 1;
+  state.prestigeBonus = nextBonus;
   state.muffins = 0;
-  state.clickPower = 1;
+  state.clickPower = 1 * nextBonus;
   state.cps = 0;
   state.buildings = {};
   state.upgrades = {};
@@ -346,7 +403,7 @@ function prestige() {
   state.buffTimer = 0;
   state.eventCooldown = 0;
   state.lastAction = Date.now();
-  showNotification("Rebirth", `You shed the bakery and gained ${formatNumber(dustGain)} stardust.`);
+  showNotification("Rebirth", `You shed the bakery, gained ${formatNumber(dustGain)} stardust, and started the next run at ${nextBonus.toFixed(2)}x power.`);
   playSfx("achievement");
   updateUI();
 }
@@ -566,6 +623,7 @@ function loadState() {
       bestCps: 0,
       bestClickPower: 1,
       autoBuyEnabled: false,
+      prestigeBonus: 1,
       comboMeter: 0,
       buffMultiplier: 1,
       buffTimer: 0,
@@ -592,6 +650,7 @@ function loadState() {
       bestCps: parsed.bestCps || 0,
       bestClickPower: parsed.bestClickPower || 1,
       autoBuyEnabled: parsed.autoBuyEnabled || false,
+      prestigeBonus: parsed.prestigeBonus || 1,
       comboMeter: parsed.comboMeter || 0,
       buffMultiplier: parsed.buffMultiplier || 1,
       buffTimer: parsed.buffTimer || 0,
@@ -615,6 +674,7 @@ function loadState() {
       bestCps: 0,
       bestClickPower: 1,
       autoBuyEnabled: false,
+      prestigeBonus: 1,
       comboMeter: 0,
       buffMultiplier: 1,
       buffTimer: 0,

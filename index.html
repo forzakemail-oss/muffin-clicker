@@ -17,13 +17,14 @@
     <main class="game-shell">
       <header class="hero-card">
         <div>
-          <p class="eyebrow">ghostly bakery idle</p>
+          <p class="eyebrow">the eerie sequel</p>
           <h1>Moon Crumb Clicker</h1>
           <p class="tagline">
-            Tap a cursed little muffin into a bakery that hums with sleepy magic and strange little miracles.
+            A cozy, cursed sequel to the endless bakery classic — tap, buy, and grow your moonlit empire one muffin at a time.
           </p>
         </div>
         <div class="hero-actions">
+          <button id="cheat-button" class="music-toggle cheat-button" type="button">⚠️ Do Not Touch</button>
           <button id="music-toggle" class="music-toggle" type="button">🎶 Music: On</button>
           <button id="sound-toggle" class="music-toggle" type="button">🔊 SFX: On</button>
           <button id="auto-buy-toggle" class="music-toggle" type="button">⚙️ Auto-buy: Off</button>
@@ -66,7 +67,7 @@
                 <span class="mouth"></span>
               </span>
             </span>
-            <span class="button-copy">Bake a muffin</span>
+            <span class="button-copy">Tap to bake</span>
           </button>
           <div class="meter-card">
             <div class="meter-labels">
@@ -83,14 +84,14 @@
         </div>
 
         <aside class="info-panel">
-          <h3>Bakery notes</h3>
+          <h3>How the bakery grows</h3>
           <ul>
-            <li>Each click feels a little more unsettling and lovely.</li>
-            <li>Buildings and upgrades turn your little oven into a tiny nightmare of pastry joy.</li>
-            <li>Achievements bloom as your kitchen becomes a legend of sugar and moonlight.</li>
+            <li>Every tap adds more muffins and grows your bakery faster.</li>
+            <li>Grandmas, ovens, and strange machines keep producing while you play.</li>
+            <li>Unlock trophies, upgrades, and rebirths as your empire stretches into the night.</li>
           </ul>
           <div class="achievement-card">
-            <h4>Odd little trophies</h4>
+            <h4>Trophies</h4>
             <ul id="achievement-list"></ul>
           </div>
         </aside>
@@ -101,7 +102,7 @@
           <div class="shop-header">
             <p class="eyebrow">tiny bakers & ovens</p>
             <h3>Buildings</h3>
-            <p class="shop-subtitle">Each purchase adds steady muffins per second.</p>
+            <p class="shop-subtitle">Buy little helpers that click for you over time.</p>
           </div>
           <div id="building-list" class="upgrade-list"></div>
         </div>
@@ -110,7 +111,7 @@
           <div class="shop-header">
             <p class="eyebrow">strange upgrades</p>
             <h3>Upgrades</h3>
-            <p class="shop-subtitle">Boost clicks, boost income, and make the bakery feel alive.</p>
+            <p class="shop-subtitle">Boost clicks, boost income, and make the cursed bakery feel alive.</p>
           </div>
           <div id="upgrade-list" class="upgrade-list"></div>
         </div>
@@ -129,13 +130,14 @@
           <div id="milestone-list" class="milestone-list"></div>
         </div>
         <div class="panel-column">
-          <h3>Cookie-style controls</h3>
-          <p class="panel-copy">Buy buildings, stack upgrades, and watch your little cursed bakery snowball into a full moonlit empire.</p>
+          <h3>Bakery controls</h3>
+          <p class="panel-copy">Buy buildings, stack upgrades, and watch your cursed bakery snowball into a full moonlit empire.</p>
           <button id="buy-all-button" class="buy-all-button" type="button">Buy the best affordable thing</button>
           <button id="prestige-button" class="buy-all-button secondary" type="button">Rebirth for 0 stardust</button>
           <ul class="stats-list">
             <li>Stardust: <strong id="stardust-count">0</strong></li>
             <li>Rebirths: <strong id="prestige-count">0</strong></li>
+            <li>Prestige bonus: <strong id="prestige-bonus">1.00x</strong></li>
             <li>Best CPS: <strong id="best-cps">0</strong></li>
             <li>Best click power: <strong id="best-click-power">1</strong></li>
           </ul>
